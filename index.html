@@ -125,7 +125,7 @@ function toEntry(row) {
     return {
         label: row.name,
         quadrant: ['Solution Prototyping', 'Technology Prototyping', 'Research', 'Emerging Technologies'].indexOf(row.quadrant),
-        ring: ['ADOPT', 'TRIAL', 'ASSESS', 'HOLD'].indexOf(row.ring),
+        ring: ['PROMOTE', 'ASSESS', 'MONITOR', 'HOLD'].indexOf(row.ring),
         category: ['Products', 'Platforms', 'Frameworks', 'Tools and Practices', 'Test'].indexOf(row.category),
         link: row.link,
         moved: ['down', 'none', 'up'].indexOf(row.moved) - 1,
@@ -155,9 +155,9 @@ function draw_radar(my_entries) {
 		{ name: "Emerging Technologies" }
     ],
     rings: [
-		{ name: "ADOPT",  color: "#0072c1" },
-		{ name: "TRIAL",  color: "#0072c1" },
+		{ name: "PROMOTE",  color: "#0072c1" },
 		{ name: "ASSESS",  color: "#0072c1" },
+		{ name: "MONITOR",  color: "#0072c1" },
 		{ name: "HOLD",  color: "#777777" }
     ],
     categories: [
@@ -168,6 +168,8 @@ function draw_radar(my_entries) {
     ],
 
 	  print_layout: true,
+
+    // Populate entries with CSV data entries instead of using original Zalando arrays
 	  entries: my_entries
     });
 }
