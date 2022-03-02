@@ -155,9 +155,9 @@ function draw_radar(my_entries) {
 		{ name: "Emerging Technologies" }
     ],
     rings: [
-		{ name: "PROMOTE",  color: "#0072c1" },
+		{ name: "ADOPT",  color: "#0072c1" },
+		{ name: "TRIAL",  color: "#0072c1" },
 		{ name: "ASSESS",  color: "#0072c1" },
-		{ name: "MONITOR",  color: "#0072c1" },
 		{ name: "HOLD",  color: "#777777" }
     ],
     categories: [
@@ -168,8 +168,6 @@ function draw_radar(my_entries) {
     ],
 
 	  print_layout: true,
-
-    // Populate entries with CSV data entries instead of using original Zalando arrays
 	  entries: my_entries
     });
 }
