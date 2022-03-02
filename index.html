@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>R&amp;P - Tech Radar</title>
-<link rel="shortcut icon" href="./img/RP_Logo_Icon.svg">
-
+<title>TechRadar</title>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<!-- <script src="http://zalando.github.io/tech-radar/release/radar-0.5.js"></script> -->
 <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
 
 <script src="radar.js"></script>
@@ -48,16 +44,6 @@
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
           </li>
-
-          <!-- Nav item to navigate to "Français" hidden
-               since there is no french version right now
-
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="FR.html">Fran&ccedil;ais</a>
-          </li>
-
-          -->
-
         </ul>
       </div>
     </div>
@@ -71,7 +57,7 @@
       <img class="masthead-avatar mb-5" src="img/RP_Logo_Circle_240px.svg" alt="">
 
       <!-- Masthead Heading -->
-      <h1 class="masthead-heading text-uppercase mb-0">Technology Radar</h1>
+      <h1 class="masthead-heading text-uppercase mb-0">Philips Technology Radar</h1>
 
       <!-- Icon Divider -->
       <div class="divider-custom divider-light">
@@ -83,7 +69,7 @@
       </div>
 
       <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">ESDC IT Research & Prototyping Technology Radar</p>
+      <p class="masthead-subheading font-weight-light mb-0">The Technology Radar is a visualization of a company’s technology portfolio that maps the evaluated existing and emerging technologies.It is the company’s go-to tool for informed technology management and strategic decision-making on which technology direction to pursue and which one to avoid</p>
 
     </div>
   </header>
@@ -115,46 +101,11 @@
 <!-- Radar Section -->
 
 <section id="radar-section" style="padding: 1rem 0;">
-<!--
-** I added padding above to not use the page-section class's default padding of 6rem
-** revert to below <section> if need be
-<section class="page-section" id="radar">
--->
-
-  <!-- Start of radar code   -->
-
-  <!-- LEGACY START -->
-  <!--
-    The style and viewBox values used to be able to resize the radar to the window size responsively.
-    The viewBox values of 1450 and 1000 are the same dimensions as the radar_visualization width and height.
-    These values must remain the same as eachother.
-  -->
-  <!-- height:auto; does not work properly in IE, changed to height:850px; 
-  <svg id="radar" style="display:block; margin:0 auto; width:100%; height:auto; max-width:1400px;" viewBox="0 0 1450 900"></svg>
-  -->
-  <!-- LEGACY END -->
-
-  <!-- 
-    Updated below for IE viebox resizing problem.
-    Created a <canvas> within a <div> to resize with the window.
-    The <svg> is placed in the same <div>.
-    The canvas will properly resize the width and height of the div, and the svg will follow and fill in the space.
-  -->
   <div style="position:relative;width:100%;">
     <canvas width="1400" height="900"></canvas>
     <svg id="radar" viewBox="0 0 1450 900" preserveAspectRatio="xMaxYMax meet"></svg>
   </div>
-
 <script>
-
-  // -o- quick open url
-  // -x- change quad numbers || requires much effort - advise against
-  // -x- number of rings || requires much effort - advise against
-  // -o- change dot colours || now colour per quadrant, not ring
-  // -o- richer dots (more info around their borders, or diff shapes) || larger, hover actions
-
-  // COOL BEANS!
-
   // Fetch CSV data and call the function to draw the radar using CSV entries
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -175,12 +126,8 @@ function toEntry(row) {
         label: row.name,
         quadrant: ['Solution Prototyping', 'Technology Prototyping', 'Research', 'Emerging Technologies'].indexOf(row.quadrant),
         ring: ['PROMOTE', 'ASSESS', 'MONITOR', 'HOLD'].indexOf(row.ring),
-        // added 'category' here to pull new column also named 'category' from CSV
-        // to add new category colours, create new name and color below in 'category' and in 'categories'
-        // NOTE: be sure the listed order remains the same in both 'categories' and 'category'
         category: ['Products', 'Platforms', 'Frameworks', 'Tools and Practices', 'Test'].indexOf(row.category),
         link: row.link,
-        // possibly create new csv column for description to populate cards in html
         moved: ['down', 'none', 'up'].indexOf(row.moved) - 1,
         active: true
     }
@@ -188,8 +135,6 @@ function toEntry(row) {
 
 // New wrapper function to populate radar visualization with CSV data
 function draw_radar(my_entries) {
-
-    // Zalando function to create radar canvas
     radar_visualization({
 	  svg_id: "radar",
 	  width: 1450,
@@ -200,7 +145,7 @@ function draw_radar(my_entries) {
     circle: "#0072c1",
 		inactive: "#ddd"
 	  },
-    title: "R&P - Tech Radar",
+    title: "Philips TechRadar",
 
     // names here must match names in fn toEntry(row) and be used in CSV
     quadrants: [
@@ -209,19 +154,12 @@ function draw_radar(my_entries) {
 		{ name: "Research" },
 		{ name: "Emerging Technologies" }
     ],
-    // old ring names: PILOT, EVALUATE, DISCOVER, WATCH
-    // !! MOVED COLORS HERE - for while quadrants are "removed"
     rings: [
 		{ name: "PROMOTE",  color: "#0072c1" },
 		{ name: "ASSESS",  color: "#0072c1" },
 		{ name: "MONITOR",  color: "#0072c1" },
 		{ name: "HOLD",  color: "#777777" }
     ],
-    // added categories below to match new column in CSV named 'category'
-    // moved colour values here to represent categories, not quadrant or rings
-    // to add new category colours, create new name and color below in 'categories' and 'category' in toEntry(row)
-    // NOTE: be sure the listed order remains the same in both 'categories' and 'category'
-    // !! REMOVED COLORS - for while quadrants are "removed"
     categories: [
 		{ name: "Products" },
 		{ name: "Platforms" },
@@ -235,21 +173,13 @@ function draw_radar(my_entries) {
 	  entries: my_entries
     });
 }
-
-
 </script>
 </section>
-
-
-
-
 <!-- About Section -->
 <section class="page-section bg-light portfolio" id="about">
   <div class="container">
-
     <!-- About Section Heading -->
     <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">About the Technology Radar</h2>
-
     <!-- Icon Divider -->
     <div class="divider-custom">
       <div class="divider-custom-line"></div>
@@ -258,22 +188,11 @@ function draw_radar(my_entries) {
       </div>
       <div class="divider-custom-line"></div>
     </div>
-
     <!-- About Section Content -->
     <div class="row">
       <div class="text-center mt4">
         <p class="lead-noWeight text-center">
-          The Research & Prototyping Technology Radar is a list of emerging industry technologies,
-          detailing how much attention and effort our team is devoting to them and how they align with our team's services.
-          <!--Each quadrant on the radar is represented by one of our team's <strong>four services:</strong> 
-        </p>
-        <h4>Research Service</h4>
-        <h4>Emerging Technology Watch Service</h4>
-        <h4>Technology Prototyping Service</h4>
-        <h4>Solution Prototyping Service</h4>
-
-        <br>-->
-
+          A Technology Radar maps the technology direction of an organization; the identified, selected and evaluated technologies can serve as threats or opportunities for the future of the company. The Technology Radar is the company’s go-to tool for informed technology management and strategic decision-making on which technology direction to pursue and which one to avoid.
         <p class="lead-noWeight text-center">
           We use <strong>four rings</strong> with the following semantics:
         </p>
@@ -296,8 +215,7 @@ function draw_radar(my_entries) {
           <div class="grid-card">
             <h3 class="grid-card-header">ASSESS</h3>
             <p class="grid-card-body">
-              Analysis is actively being performed by the team to evaluate the potential of the technology 
-              and its relevance to the organization (ETAC, Primers, FAQs, …)
+              The assess ring indicates that a technology is worth exploring with the goal of understanding how it will affect you. 
             </p>
           </div>
         </div>
@@ -316,92 +234,27 @@ function draw_radar(my_entries) {
           <div class="grid-card">
             <h3 class="grid-card-header">HOLD</h3>
             <p class="grid-card-body">
-              Technolgies listed in this ring have been observed by our team and deemed not currently 
-              relevant for further action.
+              The original intent of the hold ring was "hold off for now", to represent technologies that were too new to reasonably assess yet.
             </p>
           </div>
         </div>
-
-
-
-<!--
-        <table  style="margin:auto;">
-          <tr>
-          <td>
-
-          <h3>What is the Tech Radar?</h3>
+  </div>
+</section>
+<h3>What is the purpose?</h3>
 
           <p>
-          The Zalando Tech Radar is a list of technologies, complemented by an assessment result, called <em>ring assignment</em>. We use four rings with the following semantics:
-          </p>
-
-          <ul>
-          <li><strong>ADOPT</strong> &mdash; Technologies we have high confidence in to serve our purpose, also in large scale. Technologies with a usage culture in our Zalando production environment, low risk and recommended to be widely used.</li>
-          <li><strong>TRIAL</strong> &mdash; Technologies that we have seen work with success in project work to solve a real problem; first serious usage experience that confirm benefits and can uncover limitations. TRIAL technologies are slightly more risky; some engineers in our organization walked this path and will share knowledge and experiences.</li>
-          <li><strong>ASSESS</strong> &mdash; Technologies that are promising and have clear potential value-add for us; technologies worth to invest some research and prototyping efforts in to see if it has impact. ASSESS technologies have higher risks; they are often brand new and highly unproven in our organisation. You will find some engineers that have knowledge in the technology and promote it, you may even find teams that have started a prototyping effort.</li>
-          <li><strong>HOLD</strong> &mdash; Technologies not recommended to be used for new projects. Technologies that we think are not (yet) worth to (further) invest in. HOLD technologies should not be used for new projects, but usually can be continued for existing projects.</li>
-          </ul>
-
-          </td><td>
-
-          <h3>What is the purpose?</h3>
-
-          <p>
-          The Tech Radar is a tool to inspire and support engineering teams at Zalando to pick the best technologies for new projects; it provides a platform to share knowledge and experience in technologies, to reflect on technology decisions and continuously evolve our technology landscape. Based on the <a href="https://www.thoughtworks.com/radar">pioneering work of ThoughtWorks</a>, our Tech Radar sets out the changes in technologies that are interesting in software development &mdash; changes that we think our engineering teams should pay attention to and consider using in their projects.
+          The Tech Radar is a tool to inspire and support engineering teams to pick the best technologies for new projects; it provides a platform to share knowledge and experience in technologies, to reflect on technology decisions and continuously evolve our technology landscape. our Tech Radar sets out the changes in technologies that are interesting in software development &mdash; changes that we think our engineering teams should pay attention to and consider using in their projects.
           </p>
 
           <h3>How do we maintain it?</h3>
 
           <p>
-          The Tech Radar is maintained by the <em>Zalando Technologists Guild</em> &mdash; an open group of  senior Zalando technologists committed to devote time to the Tech Radar purpose. The guild self organises to maintain the Tech Radar documents, including this public version. Assignment of technologies to rings is the outcome of ring change proposals, which are discussed and voted on in guild meetings. The Tech Radar depends on active participation and input from all engineering teams at Zalando.
+          The Tech Radar is maintained by the Technologists Guild</em> &mdash; an open group of  senior technologists committed to devote time to the Tech Radar purpose. The guild self organises to maintain the Tech Radar documents, including this public version. Assignment of technologies to rings is the outcome of ring change proposals, which are discussed and voted on in guild meetings. The Tech Radar depends on active participation and input from all engineering teams.
           </p>
-
-          <p>
-          There is also an <a href="https://techradar.zalando.net/">internal version of the Tech Radar</a> that contains background information about each technology &mdash; when to use it, pros and cons, main risks, which teams at Zalando are using it, and for what purpose.
+		  <p>
           </p>
-
-          <p>
-          <em>BTW, if you would like to create your own Tech Radar &mdash; we have <a href="https://github.com/zalando/tech-radar">open sourced the code</a> to generate this visualization.</em>
-          </p>
-
-          </td></tr>
+		  </td></tr>
           </table>
-        -->
-
-    <!-- /.row -->
-  </div>
-</section>
-
-
-
-<!-- Portfolio Section
-<section class="page-section bg-primary text-white" id="portfolio">
-  <div class="container">
-
-    <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Portfolio</h2>
-
-    <div class="divider-custom divider-light">
-      <div class="divider-custom-line"></div>
-      <div class="divider-custom-icon">
-        <i class="fas fa-dot-circle"></i>
-      </div>
-      <div class="divider-custom-line"></div>
-    </div>
-
-    <div class="row">
-      <div class="text-center mt4">
-        <script>
-          document.write('<h1 id="'+ d.id +'">Hello World!</h1><p>Have a nice day!</p>');
-        </script>
-      </div>
-    </div>
-
-  </div>
-</section>
--->
-
-
-
   <!-- Contact Section -->
   <section class="page-section" id="contact">
     <div class="container">
