@@ -125,7 +125,7 @@ function toEntry(row) {
     return {
         label: row.name,
         quadrant: ['Solution Prototyping', 'Technology Prototyping', 'Research', 'Emerging Technologies'].indexOf(row.quadrant),
-        ring: ['PROMOTE', 'ASSESS', 'MONITOR', 'HOLD'].indexOf(row.ring),
+        ring: ['ADOPT', 'TRIAL', 'ASSESS', 'HOLD'].indexOf(row.ring),
         category: ['Products', 'Platforms', 'Frameworks', 'Tools and Practices', 'Test'].indexOf(row.category),
         link: row.link,
         moved: ['down', 'none', 'up'].indexOf(row.moved) - 1,
