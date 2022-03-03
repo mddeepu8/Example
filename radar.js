@@ -415,7 +415,6 @@ function radar_visualization(config) {
     // footer
     radar.append("text")
       .attr("transform", translate(footer_offset.x, footer_offset.y))
-      .text("● radar entry     ▲ moved up     ▼ moved down")
       .attr("xml:space", "preserve")
       .attr("text-anchor", "start")
       .style("font-family", "Montserrat")
@@ -423,7 +422,6 @@ function radar_visualization(config) {
 
     radar.append("text")
       .attr("transform", translate(-footer_offset.x-350, footer_offset.y))
-      .text("* Zoom in as needed on mobile devices.")
       .attr("xml:space", "preserve")
       .attr("text-anchor", "start")
       .style("font-family", "Montserrat")
