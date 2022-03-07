@@ -92,7 +92,7 @@
 <section id="radar-section" style="padding: 1rem 0;">
   <div style="position:relative;width:100%;">
     <canvas width="1400" height="900"></canvas>
-    <svg id="radar" viewBox="0 0 1450 900" preserveAspectRatio="xMaxYMax meet"></svg>
+    <svg id="radar" viewBox="0 0 1450 1450" preserveAspectRatio="xMaxYMax meet"></svg>
   </div>
 <script>
   // Fetch CSV data and call the function to draw the radar using CSV entries
@@ -127,7 +127,7 @@ function draw_radar(my_entries) {
     radar_visualization({
 	  svg_id: "radar",
 	  width: 1450,
-	  height: 1450,
+	  height: 900,
 	  colors: {
 		background: "#fff",
     grid: "#999999",
