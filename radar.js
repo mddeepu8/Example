@@ -116,8 +116,8 @@ function radar_visualization(config) {
       r: rings[ring].radius
     };
     var cartesian_min = {
-      x: 22 * quadrants[quadrant].factor_x,
-      y: 22 * quadrants[quadrant].factor_y
+      x: 30 * quadrants[quadrant].factor_x,
+      y: 30 * quadrants[quadrant].factor_y
     };
     var cartesian_max = {
       x: rings[3].radius * quadrants[quadrant].factor_x,
@@ -127,13 +127,13 @@ function radar_visualization(config) {
     return {
       clipx: function(d) {
         var c = bounded_box(d, cartesian_min, cartesian_max);
-        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 22);
+        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 30);
         d.x = cartesian(p).x; // adjust data too!
         return d.x;
       },
       clipy: function(d) {
         var c = bounded_box(d, cartesian_min, cartesian_max);
-        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 22);
+        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 30);
         d.y = cartesian(p).y; // adjust data too!
         return d.y;
       },
