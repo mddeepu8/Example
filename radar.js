@@ -116,8 +116,8 @@ function radar_visualization(config) {
       r: rings[ring].radius
     };
     var cartesian_min = {
-      x: 15 * quadrants[quadrant].factor_x,
-      y: 15 * quadrants[quadrant].factor_y
+      x: 22 * quadrants[quadrant].factor_x,
+      y: 22 * quadrants[quadrant].factor_y
     };
     var cartesian_max = {
       x: rings[3].radius * quadrants[quadrant].factor_x,
@@ -127,13 +127,13 @@ function radar_visualization(config) {
     return {
       clipx: function(d) {
         var c = bounded_box(d, cartesian_min, cartesian_max);
-        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 15);
+        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 22);
         d.x = cartesian(p).x; // adjust data too!
         return d.x;
       },
       clipy: function(d) {
         var c = bounded_box(d, cartesian_min, cartesian_max);
-        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 15);
+        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 22);
         d.y = cartesian(p).y; // adjust data too!
         return d.y;
       },
@@ -364,7 +364,7 @@ function radar_visualization(config) {
       index = null;
     }
     var dx = ring < 2 ? 0 : 120;
-    var dy = (index == null ? -51 : index * 12);
+    var dy = (index == null ? -16 : index * 12);
     if (ring % 2 === 1) {
       dy = dy + 36 + segmented[quadrant][ring-1].length * 12;
     }
@@ -379,7 +379,7 @@ function radar_visualization(config) {
           paddingLength += segmented[quadrant][idx].length;
         }
 
-        dy = (index == null ? -51 : index * 12);
+        dy = (index == null ? -16 : index * 12);
         // changed "+ 36" to "- 16" (36 - 52) below for ring>0 (all but PROMOTE) to match ring=0 dy - 52 after hiding "Legend" title
         // dy = dy + 36 + paddingLength * 12 + (ring - 1) * 40;
         dy = dy - 16 + paddingLength * 12 + (ring - 1) * 40;
