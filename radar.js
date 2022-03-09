@@ -364,7 +364,7 @@ function radar_visualization(config) {
       index = null;
     }
     var dx = ring < 2 ? 0 : 120;
-    var dy = (index == null ? -16 : index * 12);
+    var dy = (index == null ? -21 : index * 12);
     if (ring % 2 === 1) {
       dy = dy + 36 + segmented[quadrant][ring-1].length * 12;
     }
@@ -379,7 +379,7 @@ function radar_visualization(config) {
           paddingLength += segmented[quadrant][idx].length;
         }
 
-        dy = (index == null ? -16 : index * 12);
+        dy = (index == null ? -21 : index * 12);
         // changed "+ 36" to "- 16" (36 - 52) below for ring>0 (all but PROMOTE) to match ring=0 dy - 52 after hiding "Legend" title
         // dy = dy + 36 + paddingLength * 12 + (ring - 1) * 40;
         dy = dy - 16 + paddingLength * 12 + (ring - 1) * 40;
