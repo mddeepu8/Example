@@ -676,7 +676,7 @@ function radar_visualization(config) {
   // distribute blips, while avoiding collisions
   d3.forceSimulation()
     .nodes(config.entries)
-    .velocityDecay(0.19) // magic number (found by experimentation)
+    .velocityDecay(0.50) // magic number (found by experimentation)
     .force("collision", d3.forceCollide().radius(13).strength(0.85))
     .on("tick", ticked);
 }
